@@ -1,5 +1,5 @@
 package exo1;
-
+//
 public class FormatXML implements FormatAffichage {
     @Override
     public String formatter(Contact contact) {

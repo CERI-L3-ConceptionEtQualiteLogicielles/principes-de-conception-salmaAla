@@ -1,56 +1,65 @@
 package exo1;
 
-import java.util.ArrayList;
-import java.util.List;
+public final class Contact {
+    private final String nom;
+    private final String numero;
+    private final String prenom;
+    private final String civilite;
+    private final String adressePostale;
+    private final String email;
+    private final String dateAnniversaire;
+    private final String lieuTravail;
+    private final String ville;
 
-public class Contact implements ContactService {
-    private static List<Contact> lesContacts = new ArrayList<>();
-    private String nom;
-    private String numero;
-
-    public Contact(String nom, String numero) {
-        this.nom = nom;
-        this.numero = numero;
-        lesContacts.add(this);
+    private Contact(ContactBuilder builder) {
+        this.nom = builder.nom;
+        this.numero = builder.numero;
+        this.prenom = builder.prenom;
+        this.civilite = builder.civilite;
+        this.adressePostale = builder.adressePostale;
+        this.email = builder.email;
+        this.dateAnniversaire = builder.dateAnniversaire;
+        this.lieuTravail = builder.lieuTravail;
+        this.ville = builder.ville;
     }
 
-    public String getNom() {
-        return nom;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public String getInfoContact() {
-        return "Nom: " + getNom() + ", Numéro: " + getNumero();
-    }
-
-    public void ajouteContact(Contact contact) {
-        lesContacts.add(contact);
-    }
-
-    public void supprimeContact(Contact contact) {
-        lesContacts.remove(contact);
-    }
-
-    public void afficheContacts() {
-        for (Contact contact : lesContacts) {
-            System.out.println("Nom: " + contact.getNom() + ", Numéro: " + contact.getNumero());
-        }
-    }
-
-    public void sauvegardeEnBD() {
-        // Logique pour sauvegarder les contacts dans une base de données
-    }
-
-    public void envoiEmail(Contact contact, String message) {
-        // Logique pour envoyer un email
-    }
+    public String getNom() { return nom; }
+    public String getNumero() { return numero; }
+    public String getEmail() { return email; }
 
     @Override
     public String toString() {
-        return "Nom: " + getNom() + ", Numéro: " + getNumero();
+        return "Nom: " + nom + ", Prénom: " + prenom + ", Numéro: " + numero +
+                ", Email: " + (email != null ? email : "Non fourni");
+    }
+
+    // Classe interne ContactBuilder
+    public static class ContactBuilder {
+        private final String nom;
+        private final String numero;
+        private String prenom;
+        private String civilite;
+        private String adressePostale;
+        private String email;
+        private String dateAnniversaire;
+        private String lieuTravail;
+        private String ville;
+
+        public ContactBuilder(String nom, String numero) {
+            this.nom = nom;
+            this.numero = numero;
+        }
+
+        public ContactBuilder addPrenom(String prenom) { this.prenom = prenom; return this; }
+        public ContactBuilder addCivilite(String civilite) { this.civilite = civilite; return this; }
+        public ContactBuilder addAdressePostale(String adressePostale) { this.adressePostale = adressePostale; return this; }
+        public ContactBuilder addEmail(String email) { this.email = email; return this; }
+        public ContactBuilder addDateAnniversaire(String dateAnniversaire) { this.dateAnniversaire = dateAnniversaire; return this; }
+        public ContactBuilder addLieuTravail(String lieuTravail) { this.lieuTravail = lieuTravail; return this; }
+        public ContactBuilder addVille(String ville) { this.ville = ville; return this; }
+
+        public Contact build() {
+            return new Contact(this);
+        }
     }
 }
-

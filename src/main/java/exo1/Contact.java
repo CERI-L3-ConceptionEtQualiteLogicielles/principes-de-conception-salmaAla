@@ -50,13 +50,40 @@ public final class Contact {
             this.numero = numero;
         }
 
-        public ContactBuilder addPrenom(String prenom) { this.prenom = prenom; return this; }
-        public ContactBuilder addCivilite(String civilite) { this.civilite = civilite; return this; }
-        public ContactBuilder addAdressePostale(String adressePostale) { this.adressePostale = adressePostale; return this; }
-        public ContactBuilder addEmail(String email) { this.email = email; return this; }
-        public ContactBuilder addDateAnniversaire(String dateAnniversaire) { this.dateAnniversaire = dateAnniversaire; return this; }
-        public ContactBuilder addLieuTravail(String lieuTravail) { this.lieuTravail = lieuTravail; return this; }
-        public ContactBuilder addVille(String ville) { this.ville = ville; return this; }
+        public ContactBuilder addPrenom(String prenom) {
+            this.prenom = prenom;
+            return this;
+        }
+
+        public ContactBuilder addCivilite(String civilite) {
+            this.civilite = civilite;
+            return this;
+        }
+
+        public ContactBuilder addAdressePostale(String adressePostale) {
+            this.adressePostale = adressePostale;
+            return this;
+        }
+
+        public ContactBuilder addEmail(String email) {
+            this.email = email;
+            return this;
+        }
+
+        public ContactBuilder addDateAnniversaire(String dateAnniversaire) {
+            this.dateAnniversaire = dateAnniversaire;
+            return this;
+        }
+
+        public ContactBuilder addLieuTravail(String lieuTravail) {
+            this.lieuTravail = lieuTravail;
+            return this;
+        }
+
+        public ContactBuilder addVille(String ville) {
+            this.ville = ville;
+            return this;
+        }
 
         public Contact build() {
             return new Contact(this);
